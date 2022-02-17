@@ -1,12 +1,11 @@
 import turtle
-from math import sqrt, atan, acos, degrees
+from math import sqrt, atan, acos, asin, degrees
 
 pen = turtle.Turtle()
 pen.pensize(5)
 pen.speed("fast")
 
 WIDTH = HEIGHT = 400
-# base : height = 400 : 75 = 16 : 3
 TRIANGLE = {"base": WIDTH, "height": 75, "hypotenuse": int(sqrt(pow(WIDTH/2, 2)+pow(75, 2)))}
 
 font = [("Times New Roman", 18, "normal"), ("Times New Roman", 9, "normal"), ("Arial", 32, "normal")]
@@ -29,9 +28,9 @@ def draw_base():
 	pen.forward(half_width)
 	pen.left(90)
 	pen.forward(HEIGHT)
-	pen.left(69)
+	pen.left(degrees(acos(TRIANGLE["height"]/TRIANGLE["hypotenuse"])))
 	pen.forward(TRIANGLE["hypotenuse"])
-	pen.left(21)
+	pen.left(degrees(asin(TRIANGLE["height"]/TRIANGLE["hypotenuse"])))
 	
 	move_pen(0, -(half_height+TRIANGLE["height"]))
 	pen.color("black", "blue")
@@ -42,9 +41,9 @@ def draw_base():
 	pen.forward(half_width)
 	pen.right(90)
 	pen.forward(HEIGHT)
-	pen.right(69)
+	pen.right(degrees(acos(TRIANGLE["height"]/TRIANGLE["hypotenuse"])))
 	pen.forward(TRIANGLE["hypotenuse"])
-	pen.right(21)
+	pen.right(degrees(asin(TRIANGLE["height"]/TRIANGLE["hypotenuse"])))
 	pen.end_fill()
 	
 	move_pen(half_width, half_height/2)
